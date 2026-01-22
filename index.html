@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+  <title>JSKids - Browser</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="tabs-container" id="tabsContainer"></div>
+  <button id="newTabBtn">+</button>
+
+  <div class="toolbar">
+    <button id="backBtn">&larr;</button>
+    <button id="forwardBtn">&rarr;</button>
+    <button id="reloadBtn">&#8635;</button>
+    <input id="address" type="text" placeholder="Digite uma URL ou pesquisa..." />
+    <button id="goBtn">Ir</button>
+  </div>
+
+  <div id="webview-container"></div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
+

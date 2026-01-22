@@ -1,0 +1,30 @@
+{
+  "name": "jskids-browser",
+  "version": "1.0.0",
+  "description": "Navegador JsKids focado em controle e estudo",
+  "author": {
+    "name": "Jean Gomes",
+    "email": "jeanbyte2030@gmail.com"
+  },
+  "license": "MIT",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --linux AppImage",
+    "fast": "electron-builder --linux AppImage --dir"
+  },
+  "build": {
+    "appId": "com.jskids.browser",
+    "productName": "JsKids Browser",
+    "asar": false,
+    "linux": {
+      "target": "AppImage",
+      "category": "Network",
+      "icon": "assets/icon.png"
+    }
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^26.4.0"
+  }
+}

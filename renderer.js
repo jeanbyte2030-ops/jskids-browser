@@ -35,19 +35,30 @@ function formatInputToUrl(text) {
 
   if (!value) return 'https://www.google.com';
 
-  // Se parecer uma URL (tem ponto, não tem espaço)
   const hasSpace = /\s/.test(value);
   const hasDot = value.includes('.');
 
-  if (!hasSpace && hasDot) {
-    // Se não tem protocolo, adiciona https://
-    if (!/^https?:\/\//i.test(value)) {
-      return 'https://' + value;
-    }
+  // 1) Já tem protocolo? Então só devolve
+  if (/^https?:\/\//i.test(value)) {
     return value;
   }
 
-  // Caso contrário, trata como busca no Google
+  // 2) localhost com ou sem porta/caminho
+  if (/^localhost(?:\:\d+)?(\/.*)?$/i.test(value)) {
+    return 'http://' + value;
+  }
+
+  // 3) IP v4 com porta (ex: 10.0.0.1:8080) ou sem (10.0.0.1)
+  if (/^\d{1,3}(\.\d{1,3}){3}(:\d+)?(\/.*)?$/.test(value)) {
+    return 'http://' + value;
+  }
+
+  // 4) Domínio tipo jsbyte.com.br, google.com, etc (tem ponto e não tem espaço)
+  if (!hasSpace && hasDot) {
+    return 'https://' + value;
+  }
+
+  // 5) Qualquer outra coisa vira busca
   const query = encodeURIComponent(value);
   return `https://www.google.com/search?q=${query}`;
 }
